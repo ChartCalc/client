@@ -1,22 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./Dispersion.css"
 
 function Dispersion(props) {
+    const [from,setFrom] = useState();
+    const [to,setTo] = useState();
+    const [symbol,setSymbol] = useState("");
+    const [interval,setInterval] = useState(1git )
     return (
         <div className="dispersion">
             <div className={"symbDiv"}>
                 <p>enter symbol</p>
-                <input type="text" className="symbol" placeholder={"enter symbol"}/>
+                <input type="text" className="symbol" placeholder={"enter symbol"} value={symbol} onChange={e => setSymbol(e.target.value)}/>
             </div>
             <div className={"dates"}>
                 <p>select starting date </p>
-                <input type="date" className={"from"}/>
+                <input type="date" className={"from"} onChange={e => setFrom(e.target.value)}/>
                 <p>select ending date</p>
-                <input type="date" className={"to"} />
+                <input type="date" className={"to"}  onChange={e => setTo(e.target.value)}/>
             </div>
             <div className={"range"}>
-                <p>select interval:30</p>
-                <input type="range"  className={"interval"} min={1} max={100} step={1}/>
+                <p>select interval:{interval}</p>
+                <input type="range" value={interval}  onChange={e => setInterval(e.target.value)} className={"interval"} defaultValue={1} min={1} max={100} step={1}/>
             </div>
             <div className={"button"}>submit</div>
         </div>
