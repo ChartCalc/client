@@ -9,6 +9,7 @@
     text-align: center;
     align-items: center;
     border-bottom: 2px solid black;
+    color: black;
 }
 .options{
     list-style: none;
@@ -16,6 +17,7 @@
     display: flex;
     padding: 0;
     font-size: 1.2em;
+    transform: translateX(-20%);
 }
 .options li{
     margin: 5px;
@@ -25,5 +27,7 @@
 }
 .logo{
     font-size: 1.5em;
-    margin-left: 20px;
+}
+Link{
+    text-decoration: none;
 }
