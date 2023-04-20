@@ -17,7 +17,7 @@
     display: flex;
     padding: 0;
     font-size: 1.2em;
-    transform: translateX(-20%);
+    transform: translateX(-30%);
 }
 .options li{
     margin: 5px;
