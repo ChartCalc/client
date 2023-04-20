@@ -1,0 +1,1 @@
+export const base_url = "https://netcule.dev/api/dispersion";
