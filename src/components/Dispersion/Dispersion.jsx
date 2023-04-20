@@ -34,7 +34,7 @@ function Dispersion(props) {
                 </div>
                 <div className={"button"} onClick={handleClick}>submit</div>
             </div>
-            <div className={"result"} style={{'color': averageReturn < 0 ? 'red' : 'green'}}>result:{Math.ceil(averageReturn)}%
+            <div className={"result"} style={{'color': averageReturn < 0 ? 'red' : 'green'}}>result: {Math.ceil(averageReturn)}%
             </div>
         </div>
 
