@@ -1,0 +1,37 @@
+.InputAC {
+    border: 1px solid #999;
+    padding: 8px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+}
+.no-autocomplete {
+    color: #999;
+    padding: 8px;
+}
+.autocomplete {
+    border: 1px solid #999;
+    border-top-width: 0;
+    list-style: none;
+    margin-top: 0;
+    max-height: 143px;
+    overflow-y: auto;
+    padding-left: 0;
+    width: calc(300px + 1rem);
+    position: absolute;
+    z-index: 1;
+}
+.autocomplete li {
+    padding: 8px;
+    background-color: white;
+}
+.autocomplete > .active,
+.autocomplete li:hover {
+    background-color: darkgray;
+    cursor: pointer;
+    font-weight: 700;
+}
+.autocomplete li:not(:last-of-type) {
+    border-bottom: 1px solid #999;
+}
