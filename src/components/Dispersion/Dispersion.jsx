@@ -4,14 +4,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchDispersion} from "../../features/actions/dispersionAction";
 
 function Dispersion(props) {
-    const [from,setFrom] = useState();
-    const [to,setTo] = useState();
-    const [symbol,setSymbol] = useState("");
-    const [interval,setInterval] = useState(1 );
+    const [from, setFrom] = useState();
+    const [to, setTo] = useState();
+    const [symbol, setSymbol] = useState("");
+    const [interval, setInterval] = useState(1);
     const dispatch = useDispatch();
     const averageReturn = useSelector(state => state.dispersion)
     const handleClick = () => {
-        dispatch(fetchDispersion({symbol,from,to,interval}))
+        dispatch(fetchDispersion({symbol, from, to, interval}))
     }
     return (
         <div>
@@ -34,7 +34,8 @@ function Dispersion(props) {
                 </div>
                 <div className={"button"} onClick={handleClick}>submit</div>
             </div>
-            <div className={"result"}>result:{averageReturn}</div>
+            <div className={"result"} style={{'color': averageReturn < 0 ? 'red' : 'green'}}>result:{Math.ceil(averageReturn)}%
+            </div>
         </div>
 
     );
