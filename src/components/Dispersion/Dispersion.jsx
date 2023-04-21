@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import "./Dispersion.css"
 import {useDispatch, useSelector} from "react-redux";
 import {fetchDispersion} from "../../features/actions/dispersionAction";
-import {symbols_url} from "../../utils/constants";
-import Select from "react-select";
+import {purple, symbols_url} from "../../utils/constants";
+import Select, {components} from "react-select";
+import {selectStyles} from "./selectStyles";
 
 
 function Dispersion(props) {
@@ -11,64 +12,83 @@ function Dispersion(props) {
     const [to, setTo] = useState();
     const [symbol, setSymbol] = useState();
     const [interval, setInterval] = useState(1);
-    const [symbols,setSymbols] = useState(['loading...'])
+    const [symbols, setSymbols] = useState(['loading...'])
 
     const dispatch = useDispatch();
 
     const averageReturn = useSelector(state => state.dispersion)
 
     const handleClick = () => {
-        dispatch(fetchDispersion({symbol, from, to, interval}))
+        dispatch(fetchDispersion({symbol:symbol.value, from, to, interval}))
     }
 
-    async function fetchSymbols(){
+    async function fetchSymbols() {
         const response = await fetch(symbols_url)
         const json = await response.json();
         setSymbols(json);
-        localStorage.setItem('symbols',JSON.stringify(json));
+        localStorage.setItem('symbols', JSON.stringify(json));
     }
 
 
-
-    useEffect(() =>{
+    useEffect(() => {
         const symbs = JSON.parse(localStorage.getItem('symbols'));
-        if(symbs){
+        if (symbs) {
             setSymbols(symbs);
-        }else{
+        } else {
             fetchSymbols();
         }
-        console.log(symbs,symbols)
-    },[])
+        console.log(symbs, symbols)
+    }, [])
 
-    const style ={
-        width:'100%'
+    const style = {
+        width: '100%'
     }
-    function createOptionList(){
-        return symbols.map(symbol => {return {value:symbol, label:symbol}});
+
+    function createOptionList() {
+        return symbols.map(symbol => {
+            return {value: symbol.toLowerCase(), label: symbol.toLowerCase()}
+        });
     }
+
+    function SingleValue(props) {
+        const {children, ...rest} = props;
+        const {selectProps} = props;
+        if (selectProps.menuIsOpen) return <span></span>;
+        return <components.SingleValue {...rest}>{children}</components.SingleValue>;
+    }
+
     return (
-        <div>
+        <div className={"container"}>
+            <div className={"test"}></div>
             <div className="dispersion">
                 <div className={"symbDiv"}>
-                    <p>enter symbol</p>
+                    <p>Select symbol</p>
                     {/*<input type="text" className="symbol" placeholder={"enter symbol"} value={symbol}*/}
                     {/*       onChange={e => setSymbol(e.target.value)}/>*/}
-                    <Select options={createOptionList()} placeholder={"select symbol"} value={symbol} onChange={(data) => setSymbol(data)}/>
+                    <Select options={createOptionList()} placeholder={"select or type symbol"} value={symbol}
+                            onChange={(data) => {
+                                setSymbol(data)
+                                console.log("data",data)
+                            }}
+                            components={{SingleValue}}
+                            styles={selectStyles}/>
                 </div>
                 <div className={"dates"}>
-                    <p>select starting date </p>
+                    <p>Select starting date </p>
                     <input type="date" className={"from"} onChange={e => setFrom(e.target.value)}/>
-                    <p>select ending date</p>
+                    <p>Select ending date</p>
                     <input type="date" className={"to"} onChange={e => setTo(e.target.value)}/>
                 </div>
                 <div className={"range"}>
-                    <p>select interval:{interval}</p>
+                    <p>Select interval: {interval} days</p>
                     <input type="range" value={interval} onChange={e => setInterval(e.target.value)}
                            className={"interval"} min={1} max={100} step={1}/>
                 </div>
-                <div className={"button"} onClick={handleClick}>submit</div>
+                <div className={"button"} onClick={handleClick}>SUBMIT</div>
             </div>
-            <div className={"result"} style={{'color': averageReturn < 0 ? 'red' : 'green'}}>result: {Math.ceil(averageReturn)}%
+            <div className={"result"}>
+                <p className={"text1"}>RESULT </p>
+                <p className={"text2"}>{Math.ceil(averageReturn)}%</p>
             </div>
         </div>
     );

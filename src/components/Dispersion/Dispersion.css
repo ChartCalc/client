@@ -1,20 +1,30 @@
 .dispersion{
-    width: 420px;
-    height: 420px;
-    margin: 50px auto;
-    border: 2px solid black;
+    width: 390px;
+    height: 550px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #dfdbe5;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    align-self: center;
+
 }
+
 .symbDiv{
-    width: 80%;
+    width: 350px;
+    padding: 0px;
     box-sizing: border-box;
-    margin-top: 30px;
-    position: relative;
+    margin-top: 20px;
+
 }
-.symbDiv p{
+.symbDiv p, .range p, .dates p {
     margin-bottom: 3px;
+    font-family: 'Sulphur Point', sans-serif;
+    color: #36065C;
+    font-size: 1.3em;
+    font-weight:800;
 }
 .symbol{
     width: 100%;
@@ -22,44 +32,59 @@
     padding: 0px;
 }
 .from, .to{
-    width: 100%;
+    width: 350px;
+    box-sizing: border-box;
     margin: 0px;
     padding: 0px;
 }
+.from::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+.to::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
 .dates{
-    width: 80%;
+    width: 350px;
+    padding: 0px;
     box-sizing: border-box;
     margin: 0px;
 
 }
-.dates p{
-    margin-bottom: 2px;
-}
-.symbol, .from, .to{
-    height: 30px;
+
+.from, .to{
+
+    border: 2px solid #36065C;
+    background-color: #36065C;
+    border-radius: 15px;
+    height: 50px;
+    color: white;
+    font-family: 'Sulphur Point', sans-serif;
     font-size: 1.4em;
-    border: 2px solid black;
-    font-family: Roboto;
+    padding-left: 5px   ;
+    outline: none;
 }
 .range{
     margin-top: 10px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    width: 80%;
+    width: 350px;
+    padding: 0px;
 }
 .range p {
-    margin-bottom: 2px;
+    padding-bottom: 10px;
 }
 .interval{
     width: 100%;
-    height: 30px;
-    background: white;
+    height: 6px;
+    background: #36065C;
     opacity: 0.8;
     outline: none;
     transition: 0.3s;
     -webkit-appearance: none;
-    border: 2px solid black;
+    /*border: 1px solid #36065C;*/
+    border-radius: 20px;
     margin: -1px;
     argin: 0px;
     padding: 0px;
@@ -68,34 +93,70 @@
     appearance: none;
     -webkit-appearance: none;
     width: 20px;
-    height: 30px;
-    background: black;
+    height: 20px;
+    background: #FF735C;
     cursor: pointer;
+    border-radius: 30px;
 }
 .button{
 
-    height: 40px;
-    width: 100px;
-    font-size: 1.3em;
+    height: 90px;
+    width: 350px;
+    font-size:3.5em;
     font-weight: bold;
     text-align: center;
-    border: 2px solid black;
+    border-radius: 10px;
     padding: 3px;
     box-sizing: border-box;
     margin-top: 20px;
+    font-family: 'Sulphur Point', sans-serif;
+    color: white;
+    font-weight: bolder;
+    background-color: #FF735C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .button:hover{
     cursor: pointer;
 }
 .result{
-    width: 420px;
-    height: 50px;
-    border: 2px solid black;
+    width: 270px;
+    height: 180px;
+    border: #36065C;
+    background-color:#dfdbe5 ;
+    border-radius: 30px;
     margin: 0px auto;
     text-align: center;
     font-size: 2em;
+    text-align: center;
+    font-family: 'Sulphur Point', sans-serif;
+    color: #36065C;
+    margin: 0px;
+    margin-top: 50px;
+    margin-left: 20px;
+    padding: 0px;
+    margin-bottom: 20px;
 }
-.test{
-    border: 2px solid black;
-    color: #704cb6;
+.text1{
+    font-family: 'Sulphur Point', sans-serif;
+    color: #36065C;
+    padding: 0px;
+    margin: 0px;
+    font-size: 2em;
+}
+.text2{
+    font-family: 'Sulphur Point', sans-serif;
+    color: #FF735C;
+    padding: 0px;
+    margin: 0px;
+    font-size: 2em;
+}
+
+.container{
+    display: flex;
+    box-sizing: border-box;
+    width: 100vw;
+    justify-content: center;
+    flex-wrap: wrap;
 }
