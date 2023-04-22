@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./Dispersion.css"
 import {useDispatch, useSelector} from "react-redux";
 import {fetchDispersion} from "../../features/actions/dispersionAction";
-import {purple, symbols_url} from "../../utils/constants";
+import {dayInMs, purple, symbols_url} from "../../utils/constants";
 import Select, {components} from "react-select";
 import {selectStyles} from "./selectStyles";
 
@@ -27,14 +27,18 @@ function Dispersion(props) {
         const json = await response.json();
         setSymbols(json);
         localStorage.setItem('symbols', JSON.stringify(json));
+        localStorage.setItem('time',Date.now().toString());
     }
 
 
     useEffect(() => {
         const symbs = JSON.parse(localStorage.getItem('symbols'));
-        if (symbs) {
+        const time = parseInt(localStorage.getItem('time'));
+        if (symbs && ((Date.now() - time) < dayInMs)) {
+            console.log("fromLocalStorage symbs:" ,symbs)
             setSymbols(symbs);
         } else {
+            console.log("fetching")
             fetchSymbols();
         }
         console.log(symbs, symbols)
@@ -88,7 +92,7 @@ function Dispersion(props) {
             </div>
             <div className={"result"}>
                 <p className={"text1"}>RESULT </p>
-                <p className={"text2"}>{Math.ceil(averageReturn)}%</p>
+                <p className={"text2"}>{Math.floor(averageReturn * 100) / 100}%</p>
             </div>
         </div>
     );
